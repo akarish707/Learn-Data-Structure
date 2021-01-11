@@ -52,6 +52,11 @@ int main(){
     printf("Before Remove\n");
     printStudent(s1);
     printStudent(s2);
+    removeStudent(s1);
+    removeStudent(s2);
+    printf("After Remove\n");
+    printStudent(s1);
+    printStudent(s2);
     
     return 0;
 }
