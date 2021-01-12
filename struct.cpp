@@ -1,28 +1,35 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <stdio.h> //buat library input dan output
+#include <string.h>//strcpy
+#include <stdlib.h>//dynamic memory allocation
 
 struct Course{
-    char ID[10];
-    int score;
+    char ID[10];//10 bytes
+    int score;//4 bytes
+    //alasan dipisahkan karena bisa saja dosen, mahasiswa maupun lainnya punya course juga 
+    //jadi banyak tipenya
 };
 
 struct Student{
-    char name[255];
-    double GPA;
-    Course c;
+    char name[255];//255 bytes
+    double GPA;//8 bytes
+    Course c;//object course
 };
 
 int plus(int a,int b){
     return a+b;
 };
+//tipe data yang di return : int
+//nama function +
+//parameter a dan b
 
 //createstudent akan mereturn pointer yang mengarah ke Student
-// const chare *name sama aja kayak char name[]
+// const chare *name sama aja kayak char name[];
+//kalau gapake * dia cuman return student aja
+//constant menjamin parameter itu gaakan berubah isinya
 Student *createStudent(const char*name, double gpa,const char *ID,int score){
  //alokasi memory
  Student *newStudent = (Student*)malloc(sizeof(Student));
- strcpy(newStudent->name,name);
+ strcpy(newStudent->name,name);// strcpy ((*newStudent).name,name); -> untuk memperpendek
  
  //hasil = hasil + 3 sama aja dengan hasil +=3
  //(*newStudent).atributnya sama aja dengan newStudent -> atriburnya
@@ -31,6 +38,9 @@ Student *createStudent(const char*name, double gpa,const char *ID,int score){
  newStudent -> c.score = score;
  return newStudent;
 }
+//tipe data yang direturn :Student*
+//nama function createStudent
+//parameter name,gpa, course (id dan course)
 
 void removeStudent(Student *s){
     free(s);
@@ -47,6 +57,7 @@ void printStudent(Student *s){
 int main(){
     //printf("%lu\n",sizeof(Student));
     //s1 mengarah ke student yang direturn oleh createStudent
+    //Student students[10]; -> static memory allocation
     Student *s1 = createStudent("Budi",3.90,"COMP6048",100);
     Student *s2 = createStudent("Cheryl",4.00,"COMP6048",100);
     printf("Before Remove\n");
